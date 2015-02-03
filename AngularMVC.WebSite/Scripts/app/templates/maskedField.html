@@ -1,0 +1,16 @@
+﻿<style>
+    .edit {
+        background-color: white;
+        border: 1px solid;
+        border-color: #CCC;
+    }
+    .view {
+        background-color: transparent;
+        border: 0px solid;
+        padding-left: 6px;
+        padding-top: 6px;
+        color: #606060;
+    }
+</style>
+
+<input ng-model="value" ng-class="{edit: state==3 || state==4, view: state==1 || state==2}" />

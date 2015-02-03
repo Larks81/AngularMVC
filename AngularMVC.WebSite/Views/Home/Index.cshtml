@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@section featured {
+    
+}
+<div id="bodyContainer" ng-app="AnagraficaApp">
+    
+    
+    <div ng-controller="AnagraficaCtrl" ng-init="getAnagrafiche()">
+        
+        <a>stato: {{statoTransazione}}</a><br />
+        <pulsantiera state="statoTransazione" validatedins="validatedins()" validatedupd="validatedupd()" initins="initins()" initupd="initupd()" validateddel="validateddel()" validatedundo="validatedundo()" statechanged="statechanged(state)"></pulsantiera>
+
+
+        <a> {{title}} </a>        
+        <ul>
+            <li ng-repeat="anagrafica in anagrafiche" ng-click="selectPersona(anagrafica)">
+                {{anagrafica.Nome}} - {{anagrafica.Cognome}} - {{anagrafica.CodiceFiscale}}                                               
+            </li>
+        </ul>
+        <button ng-click="getAnagrafiche()">Aggiorna</button>
+
+        <br />
+        <br />
+        
+        <fieldset ng-show="selectedPerson!=null">
+            <legend>Persona selezionata</legend>
+            <label for="tbNome">Nome</label>            
+            <maskedfield value="selectedPerson.Nome" enablestate="1111" mask="00000" state="statoTransazione"></maskedfield>
+            <label for="tbCognome">Cognome</label>
+            <maskedfield value="selectedPerson.Cognome" enablestate="1111" mask="00000" state="statoTransazione"></maskedfield>
+            <label for="tbCodFis">Codice Fiscale</label>
+            <maskedfield value="selectedPerson.CodiceFiscale" enablestate="1111" mask="00000" state="statoTransazione"></maskedfield>
+        </fieldset>
+    </div>
+    
+</div>
+@section scripts {
+    @Scripts.Render("~/bundles/angular-lib") 
+    @Scripts.Render("~/bundles/app-base") 
+    @Scripts.Render("~/bundles/app-templates")
+    @Scripts.Render("~/bundles/app-controllers")    
+}
