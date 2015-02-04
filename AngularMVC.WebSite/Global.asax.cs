@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DNA.WebSite.ViewEngine;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,6 +24,8 @@ namespace DNA.WebSite
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new AngularMVCViewEngine());
         }
     }
 }

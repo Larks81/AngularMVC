@@ -8,8 +8,7 @@ angular.module('AnagraficaApp')
         $scope.anagrafiche = [];                      
         $scope.newPerson = new Anagrafica();
         $scope.selectedPerson = null;
-        $scope.rollbackPerson = null;
-        //$scope.statoTransazione = TransationStateEnum.SEARCH;
+        $scope.rollbackPerson = null;        
                 
         $scope.getAnagrafiche = function () {            
             $scope.title = "loading anagrafiche...";            
