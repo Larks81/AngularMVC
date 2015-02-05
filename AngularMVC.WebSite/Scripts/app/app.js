@@ -1,1 +1,1 @@
-﻿var app = angular.module('AnagraficaApp', ['ngResource', 'appServices']);
+﻿var app = angular.module('AngularMVCApp', ['ngResource', 'appServices']);

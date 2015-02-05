@@ -1,44 +1,45 @@
 ﻿
-
-angular.module('AnagraficaApp')
-.controller('AnagraficaCtrl', ['$scope', 'Anagrafica',
-    function ($scope, Anagrafica) {
+/*Person is the var to change in code*/
+angular.module('AngularMVCApp')
+.controller('PersonCtrl', ['$scope', 'Person',
+    function ($scope, Person) {
         
         $scope.title = "loading question...";
-        $scope.anagrafiche = [];                      
-        $scope.newPerson = new Anagrafica();
+        $scope.persons = [];                      
+        $scope.newPerson = new Person();
         $scope.selectedPerson = null;
-        $scope.rollbackPerson = null;        
+        $scope.rollbackPerson = null;
+        $scope.transactionState = TransationStateEnum.SEARCH;
                 
-        $scope.getAnagrafiche = function () {            
+        $scope.getPersons = function () {            
             $scope.title = "loading anagrafiche...";            
-            $scope.anagrafiche = Anagrafica.query();            
+            $scope.persons = Person.query();            
         };
 
-        $scope.selectPersona = function (persona) {
-            $scope.selectedPerson = persona;
-            $scope.statoTransazione = TransationStateEnum.VIEW;
+        $scope.selectPerson = function (person) {
+            $scope.selectedPerson = person;
+            $scope.transactionState = TransationStateEnum.VIEW;
         };
 
-        $scope.insertAnagrafica = function (persona) {            
-            Anagrafica.save(persona, function () {
-                $scope.getAnagrafiche();
+        $scope.insertPerson = function (person) {            
+            Person.save(person, function () {
+                $scope.getPersons();
             });            
         };
 
-        $scope.updateAnagrafica = function (persona) {            
+        $scope.updatePerson = function (person) {            
             $scope.working = true;
             $scope.answered = true;            
-            Anagrafica.update({ id: persona.ID }, persona, function () {
-                $scope.getAnagrafiche();
+            Person.update({ id: person.ID }, person, function () {
+                $scope.getPersons();
             });
         };
 
-        $scope.deleteAnagrafica = function (persona) {
+        $scope.deletePerson = function (person) {
             $scope.working = true;
             $scope.answered = true;
-            Anagrafica.delete({ id: persona.ID }, function () {
-                $scope.getAnagrafiche();
+            Person.delete({ id: person.ID }, function () {
+                $scope.getPersons();
             });
         };
         
@@ -56,27 +57,26 @@ angular.module('AnagraficaApp')
         }
 
         $scope.validatedins = function(){
-            $scope.insertAnagrafica($scope.selectedPerson);
+            $scope.insertPerson($scope.selectedPerson);
             return true;
         }
 
         $scope.validatedupd = function () {
-            $scope.updateAnagrafica($scope.selectedPerson);
+            $scope.updatePerson($scope.selectedPerson);
             $scope.rollbackPerson = null;
             return true;
         }
 
         $scope.validateddel = function () {
-            if (confirm("Vuoi realmente eliminare questa persona?")) {
-                $scope.deleteAnagrafica($scope.selectedPerson);
+            if (confirm("Do you want really delete this?")) {
+                $scope.deletePerson($scope.selectedPerson);
                 return true;
             } else {
                 return false;
             }            
         }
 
-        $scope.validatedundo = function () {
-            alert("undo");
+        $scope.validatedundo = function () {            
             if ($scope.rollbackPerson != null) {
                 $scope.selectedPerson = angular.copy($scope.rollbackPerson);                
                 $scope.rollbackPerson = null;

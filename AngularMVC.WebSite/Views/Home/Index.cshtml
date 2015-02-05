@@ -4,34 +4,34 @@
 @section featured {
     
 }
-<div id="bodyContainer" ng-app="AnagraficaApp">
+<div id="bodyContainer" ng-app="AngularMVCApp">
     
     
-    <div ng-controller="AnagraficaCtrl" ng-init="getAnagrafiche()">
+    <div ng-controller="PersonCtrl" ng-init="getPersons()">
         
-        <a>stato: {{statoTransazione}}</a><br />
-        <pulsantiera state="statoTransazione" validatedins="validatedins()" validatedupd="validatedupd()" initins="initins()" initupd="initupd()" validateddel="validateddel()" validatedundo="validatedundo()" statechanged="statechanged(state)"></pulsantiera>
+        <a>stato: {{transactionState}}</a><br />
+        <actionbar state="transactionState" validatedins="validatedins()" validatedupd="validatedupd()" initins="initins()" initupd="initupd()" validateddel="validateddel()" validatedundo="validatedundo()" statechanged="statechanged(state)"></actionbar>
 
 
         <a> {{title}} </a>        
         <ul>
-            <li ng-repeat="anagrafica in anagrafiche" ng-click="selectPersona(anagrafica)">
-                {{anagrafica.Nome}} - {{anagrafica.Cognome}} - {{anagrafica.CodiceFiscale}}                                               
+            <li ng-repeat="person in persons" ng-click="selectPerson(person)">
+                {{person.FirstName}} - {{person.LastName}} - {{person.FiscalCode}}
             </li>
         </ul>
-        <button ng-click="getAnagrafiche()">Aggiorna</button>
+        <button ng-click="getPersons()">Update</button>
 
         <br />
         <br />
         
         <fieldset ng-show="selectedPerson!=null">
-            <legend>Persona selezionata</legend>
-            <label for="tbNome">Nome</label>            
-            <maskedfield value="selectedPerson.Nome" enablestate="1111" mask="00000" state="statoTransazione"></maskedfield>
-            <label for="tbCognome">Cognome</label>
-            <maskedfield value="selectedPerson.Cognome" enablestate="1111" mask="00000" state="statoTransazione"></maskedfield>
-            <label for="tbCodFis">Codice Fiscale</label>
-            <maskedfield value="selectedPerson.CodiceFiscale" enablestate="1111" mask="00000" state="statoTransazione"></maskedfield>
+            <legend>Selected Person</legend>
+            <label for="tbNome">FirstName</label>            
+            <maskedfield value="selectedPerson.FirstName" enablestate="1111" mask="00000" state="transactionState"></maskedfield>
+            <label for="tbCognome">LastName</label>
+            <maskedfield value="selectedPerson.LastName" enablestate="1111" mask="00000" state="transactionState"></maskedfield>
+            <label for="tbCodFis">Fiscal Code</label>
+            <maskedfield value="selectedPerson.FiscalCode" enablestate="1111" mask="00000" state="transactionState"></maskedfield>
         </fieldset>
     </div>
     

@@ -263,8 +263,8 @@
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\templates\maskedField.html" />
     <Content Include="Scripts\app\templates\maskedField.js" />
-    <Content Include="Scripts\app\templates\pulsantiera.html" />
-    <Content Include="Scripts\app\templates\pulsantiera.js" />
+    <Content Include="Scripts\app\templates\actionBar.html" />
+    <Content Include="Scripts\app\templates\actionBar.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

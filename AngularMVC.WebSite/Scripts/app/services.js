@@ -1,8 +1,8 @@
 ﻿var appServices = angular.module('appServices', ['ngResource']);
 
-appServices.factory('Anagrafica', ['$resource','configs',
+appServices.factory('Person', ['$resource','configs',
     function ($resource, configs) {
-        return $resource(configs.baseWebApiUrl+'api/anagrafica/:id', {}, {            
+        return $resource(configs.baseWebApiUrl+'api/persons/:id', {}, {            
             update: { method: 'PUT', params: { id: '@id' } }
         });
     }

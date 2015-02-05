@@ -12,8 +12,7 @@ namespace DNA.WebSite.ViewEngine
     public class AngularMVCViewEngine : RazorViewEngine
     {
         protected override IView CreateView(ControllerContext controllerContext, string viewPath, string masterPath)
-        {
-            var a = base.CreateView(controllerContext, viewPath, masterPath);
+        {            
             return new AngularMVCView(controllerContext, viewPath, masterPath);
         }
     }
@@ -34,7 +33,9 @@ namespace DNA.WebSite.ViewEngine
             var w = new HtmlTextWriter(sw);
             originalView.Render(viewContext,w);
             string html = sw.ToString();
-            html = html.Replace("Contact", "Sta minchia");	
+
+            //Injection here
+            //html = html.Replace("Contact", "Sta minchia");	
             writer.Write(html);            
         }
     }

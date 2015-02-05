@@ -1,3 +1,3 @@
-﻿angular.module('AnagraficaApp').constant('configs', {
+﻿angular.module('AngularMVCApp').constant('configs', {
     baseWebApiUrl: 'http://localhost:55362/'
 });

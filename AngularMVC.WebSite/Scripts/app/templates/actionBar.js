@@ -1,5 +1,5 @@
-﻿angular.module('AnagraficaApp')
-.directive('pulsantiera', function () {
+﻿angular.module('AngularMVCApp')
+.directive('actionbar', function () {
     return {
         restrict: 'E',
         scope: {
@@ -12,9 +12,9 @@
             initins: "&",
             initupd: "&"
         },
-        templateUrl: '/Scripts/app/templates/pulsantiera.html',
+        templateUrl: '/Scripts/app/templates/actionBar.html',
         controller: function ($scope) {
-
+            
             setState(TransationStateEnum.SEARCH);
             
             $scope.btnconfOnClick = function () {                                

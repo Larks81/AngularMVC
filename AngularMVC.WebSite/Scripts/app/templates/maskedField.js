@@ -1,4 +1,4 @@
-﻿angular.module('AnagraficaApp')
+﻿angular.module('AngularMVCApp')
 .directive('maskedfield', function () {
     return {
         restrict: 'E',
