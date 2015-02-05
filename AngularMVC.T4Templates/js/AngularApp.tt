@@ -1,0 +1,12 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".js" #>
+<# 
+	var angularAppName = "AngularMVCApp"; //harcoded for now.. later we will read this from some kind of configuration (maybe the project name?)
+	var angularAppDependencies = new List<String> { "ngResource", "appServices" };
+ #>
+
+var app = angular.module('<#= angularAppName #>', [<#=String.Join(", ", angularAppDependencies.Select(dep => "'" + dep + "'"))#>]);
