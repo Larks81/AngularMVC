@@ -1,0 +1,18 @@
+﻿
+    <!--<a>stato: {{transactionStateItem}}</a><br />-->
+<div ng-show="item!=null">
+    <actionbar state="transactionStateItem" validatedupd="validatedupd()" initupd="initupd()" validateddel="validateddel()" validatedundo="validatedundo()" statechanged="statechanged(state)"></actionbar>
+
+    <fieldset ng-show="item!=null">
+        <legend>Selected Person</legend>
+        <label for="tbNome">FirstName</label>
+        <maskedfield value="item.FirstName" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
+        <label for="tbCognome">LastName</label>
+        <maskedfield value="item.LastName" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
+        <label for="tbCodFis">Fiscal Code</label>
+        <maskedfield value="item.FiscalCode" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
+    </fieldset>
+</div>
+<div ng-show="item==null">
+    Select a item
+</div>

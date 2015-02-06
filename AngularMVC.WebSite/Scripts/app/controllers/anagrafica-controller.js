@@ -16,10 +16,17 @@ angular.module('AngularMVCApp')
             $scope.persons = Person.query();            
         };
 
-        $scope.selectPerson = function (person) {
+        $scope.selectPerson = function (person) {            
             $scope.selectedPerson = person;
             $scope.transactionState = TransationStateEnum.VIEW;
         };
+
+        $scope.addPerson = function () {
+            $scope.selectedPerson = new Person();
+        };
+
+
+
 
         $scope.insertPerson = function (person) {            
             Person.save(person, function () {

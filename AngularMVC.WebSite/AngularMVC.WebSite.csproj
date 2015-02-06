@@ -256,6 +256,8 @@
     <Content Include="Scripts\angular-resource.min.js.map" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\app\templates\baseCrud\person\personCrud.html" />
+    <Content Include="Scripts\app\templates\baseCrud\person\personCrud.js" />
     <Content Include="Scripts\app\enums.js" />
     <Content Include="Scripts\app\configs.js" />
     <Content Include="Scripts\app\controllers\anagrafica-controller.js" />

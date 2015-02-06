@@ -43,9 +43,11 @@ namespace DNA.WebApi.Controllers
         }
 
         // POST api/anagrafica
-        public void Post([FromBody]Person value)
+        public int Post([FromBody]Person value)
         {
+            value.ID = persons.Max(p => p.ID) + 1;
             persons.Add(value);
+            return value.ID;
         }
 
         // PUT api/anagrafica/5

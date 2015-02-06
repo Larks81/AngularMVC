@@ -51,6 +51,9 @@ namespace DNA.WebSite
 
             bundles.Add(new ScriptBundle("~/bundles/app-templates").Include(
                 "~/Scripts/app/templates/*.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/app-templates-crud").Include(
+                "~/Scripts/app/templates/baseCrud/person/*.js"));
         }
     }
 }

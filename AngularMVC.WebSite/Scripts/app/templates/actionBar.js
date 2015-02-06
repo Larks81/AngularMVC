@@ -4,12 +4,10 @@
         restrict: 'E',
         scope: {
             state: '=',
-            statechanged : "&",
-            validatedins: "&",
+            statechanged : "&",            
             validatedupd: "&",
             validateddel: "&",
-            validatedundo: "&",
-            initins: "&",
+            validatedundo: "&",            
             initupd: "&"
         },
         templateUrl: '/Scripts/app/templates/actionBar.html',
@@ -26,11 +24,7 @@
                     setState(TransationStateEnum.VIEW);
                 } 
             }
-            $scope.btninsOnClick = function () {
-                if ($scope.initins()) {
-                    setState(TransationStateEnum.INSERT);
-                }
-            }
+            
             $scope.btnupdOnClick = function () {
                 if ($scope.initupd()) {
                     setState(TransationStateEnum.EDIT);
@@ -55,14 +49,7 @@
             function setState(stateStr) {
                 $scope.state = stateStr;
 
-                switch (stateStr) {
-                    case TransationStateEnum.INSERT:
-                        $scope.btnconfEnabled = true;
-                        $scope.btninsEnabled = false;
-                        $scope.btnupdEnabled = false;
-                        $scope.btndelEnabled = false;
-                        $scope.btnundoEnabled = true;
-                        break;
+                switch (stateStr) {                    
                     case TransationStateEnum.EDIT:
                         $scope.btnconfEnabled = true;
                         $scope.btninsEnabled = false;
