@@ -1,0 +1,42 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Reflection" #>
+<#@ assembly name="$(TargetDir)System.Web.Http.dll" #>
+<#@ assembly name="$(TargetDir)DNA.Model.dll" #>
+<#@ assembly name="$(TargetDir)DNA.WebApi.dll" #>
+<#@ assembly name="$(TargetPath)" #>
+
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="DNA.WebApi.Controllers" #>
+<#@ import namespace="DNA.Model" #>
+<#@ import namespace="AngularMVC.T4Templates.Helpers" #>
+<#@ output extension=".js" #>
+<# 
+	var controllers = new List<Type>() { typeof(PersonsController) };
+	var dict = controllers.ToDictionary(k => k, 
+						v => v.GetMethods().Select(m => new WebApiControllerMethodsInfos(m)));
+ #>
+
+var appServices = angular.module('appServices', ['ngResource']);
+	
+<#
+	foreach(var controller in dict) 
+	{
+		var controllerType = controller.Key;
+		var controllerMethodsInfos = controller.Value;
+		if (controllerMethodsInfos.Any()) 
+		{
+			WriteLine(String.Format(@"appServices.factory('{0}', ['$resource','configs', function ($resource, configs) {{", controllerType.Name));
+			WriteLine("return $resource(configs.baseWebApiUrl+'api/persons/:id', {}, {");
+			foreach(var cmi in controllerMethodsInfos) 
+			{
+				//WriteLine(String.Format("update: { method: 'PUT', params: { id: '@id' } }"));
+				WriteLine(String.Format("{0}: {{ method: '{1}', params: {{ {2} }} }}", "", cmi.HttpMethod, ""));
+			}
+			WriteLine("}});");	
+		}
+	}
+ #>

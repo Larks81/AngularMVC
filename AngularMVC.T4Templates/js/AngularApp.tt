@@ -1,10 +1,16 @@
-﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ assembly name="System.Core" #>
+<#@ assembly name="EnvDTE" #>
+
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="EnvDTE" #>
 <#@ output extension=".js" #>
 <# 
+	IServiceProvider serviceProvider = (IServiceProvider)this.Host;
+	DTE dte = serviceProvider.GetService(typeof(DTE)) as DTE;  
+
 	var angularAppName = "AngularMVCApp"; //harcoded for now.. later we will read this from some kind of configuration (maybe the project name?)
 	var angularAppDependencies = new List<String> { "ngResource", "appServices" };
  #>
