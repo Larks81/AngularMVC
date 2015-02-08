@@ -17,7 +17,7 @@
 <# 
 	var controllers = new List<Type>() { typeof(PersonsController) };
 	var dict = controllers.ToDictionary(k => k, 
-						v => v.GetMethods().Select(m => new WebApiControllerMethodsInfos(m)));
+						v => AngularResourcesHelpers.GetValidActionsFromController(v).Select(m => new WebApiControllerMethodsInfos(m)));
  #>
 
 var appServices = angular.module('appServices', ['ngResource']);
