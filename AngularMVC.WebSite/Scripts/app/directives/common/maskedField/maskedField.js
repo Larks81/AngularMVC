@@ -8,7 +8,7 @@
             state: '=',
             mask: '='
         },
-        templateUrl: '/Scripts/app/templates/maskedField.html',
+        templateUrl: '/Scripts/app/directives/common/maskedField/maskedField.html',
         controller: function ($scope) {            
             
         }

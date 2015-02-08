@@ -12,5 +12,6 @@ namespace DNA.Model
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FiscalCode { get; set; }
+        public List<Address> Addresses { get; set; }
     }
 }

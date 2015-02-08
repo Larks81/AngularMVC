@@ -10,36 +10,35 @@
             validatedundo: "&",            
             initupd: "&"
         },
-        templateUrl: '/Scripts/app/templates/actionBar.html',
+        templateUrl: '/Scripts/app/directives/common/actionBar/actionBar.html',
         controller: function ($scope) {
             
             setState(TransationStateEnum.SEARCH);
-            
-            $scope.btnconfOnClick = function () {                                
+
+            $scope.btnconfOnClick = function() {
 
                 if ($scope.state == TransationStateEnum.INSERT && $scope.validatedins() == true) {
                     setState(TransationStateEnum.VIEW);
-                }
-                else if ($scope.state == TransationStateEnum.EDIT && $scope.validatedupd() == true) {
+                } else if ($scope.state == TransationStateEnum.EDIT && $scope.validatedupd() == true) {
                     setState(TransationStateEnum.VIEW);
-                } 
-            }
-            
-            $scope.btnupdOnClick = function () {
-                if ($scope.initupd()) {
-                    setState(TransationStateEnum.EDIT);
                 }
-            }
-            $scope.btndelOnClick = function () {
+            };
+
+            $scope.btnupdOnClick = function() {                
+                setState(TransationStateEnum.EDIT);                
+            };
+
+            $scope.btndelOnClick = function() {
                 if ($scope.validateddel() == true) {
                     setState(TransationStateEnum.VIEW);
                 }
-            }
-            $scope.btnundoOnClick = function () {
+            };
+
+            $scope.btnundoOnClick = function() {
                 if ($scope.validatedundo() == true) {
                     setState(TransationStateEnum.VIEW);
                 }
-            }
+            };
 
             $scope.$watch('state', function () {                
                 setState($scope.state);                
@@ -51,11 +50,13 @@
 
                 switch (stateStr) {                    
                     case TransationStateEnum.EDIT:
-                        $scope.btnconfEnabled = true;
-                        $scope.btninsEnabled = false;
-                        $scope.btnupdEnabled = false;
-                        $scope.btndelEnabled = true;
-                        $scope.btnundoEnabled = true;
+                        if ($scope.initupd()) {
+                            $scope.btnconfEnabled = true;
+                            $scope.btninsEnabled = false;
+                            $scope.btnupdEnabled = false;
+                            $scope.btndelEnabled = true;
+                            $scope.btnundoEnabled = true;    
+                        }                        
                         break;                    
                     case TransationStateEnum.SEARCH:
                         $scope.btnconfEnabled = true;
