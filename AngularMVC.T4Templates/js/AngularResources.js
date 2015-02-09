@@ -2,11 +2,12 @@
 
 var appServices = angular.module('appServices', ['ngResource']);
 	
-appServices.factory('PersonsController', ['$resource','configs', function ($resource, configs) {
+appServices.factory('PersonsController', ['$resource','configs', 
+			function ($resource, configs) {
 return $resource(configs.baseWebApiUrl+'api/persons/:id', {}, {
-: { method: 'GET', params: {  } }
-: { method: 'GET', params: {  } }
-: { method: 'POST', params: {  } }
-: { method: 'PUT', params: {  } }
-: { method: 'DELETE', params: {  } }
-}});
+'getAll': { method: 'GET', params: {  }, isArray:true },
+'get': { method: 'GET', params: { id : '@id' }, isArray:false },
+'post': { method: 'POST', params: {  }, isArray:false },
+'put': { method: 'PUT', params: { id : '@id' }, isArray:false },
+'delete': { method: 'DELETE', params: { id : '@id' }, isArray:false },
+})}]);

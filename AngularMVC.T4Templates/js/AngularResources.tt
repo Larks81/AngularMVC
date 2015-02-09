@@ -29,14 +29,15 @@ var appServices = angular.module('appServices', ['ngResource']);
 		var controllerMethodsInfos = controller.Value;
 		if (controllerMethodsInfos.Any()) 
 		{
-			WriteLine(String.Format(@"appServices.factory('{0}', ['$resource','configs', function ($resource, configs) {{", controllerType.Name));
+			WriteLine(String.Format(@"appServices.factory('{0}', ['$resource','configs', 
+			function ($resource, configs) {{", controllerType.Name));
 			WriteLine("return $resource(configs.baseWebApiUrl+'api/persons/:id', {}, {");
 			foreach(var cmi in controllerMethodsInfos) 
 			{
-				//WriteLine(String.Format("update: { method: 'PUT', params: { id: '@id' } }"));
-				WriteLine(String.Format("{0}: {{ method: '{1}', params: {{ {2} }} }}", "", cmi.HttpMethod, ""));
+				var parameters = String.Join(", ", cmi.Parameters.Select(kvp => String.Format("{0} : '{1}'", kvp.Key, kvp.Value)));
+				WriteLine(String.Format("'{0}': {{ method: '{1}', params: {{ {2} }}, isArray:{3} }},", cmi.MethodName, cmi.HttpMethod, parameters, cmi.IsArray.ToString().ToLowerInvariant()));
 			}
-			WriteLine("}});");	
+			WriteLine("})}]);");	
 		}
 	}
  #>

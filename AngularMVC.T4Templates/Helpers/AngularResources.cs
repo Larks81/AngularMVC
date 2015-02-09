@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -40,25 +41,44 @@ namespace AngularMVC.T4Templates.Helpers
 
     public class WebApiControllerMethodsInfos
     {
+        private MethodInfo _mi;
+
         public string MethodName { get; set; }
 
         public string HttpMethod { get; set; }
 
-        public bool IsList { get; set; }
+        public bool IsArray { get; set; }
 
-        public WebApiControllerMethodsInfos()
-        {
-
-        }
+        public Dictionary<string, string> Parameters { get; set; }
 
         public WebApiControllerMethodsInfos(MethodInfo mi)
         {
+            this._mi = mi;
+            this.Parameters = new Dictionary<string, string>();
             this.HttpMethod = HttpMethodFromMethodName(mi.Name);
+            this.IsArray = typeof(IEnumerable).IsAssignableFrom(mi.ReturnType);
+            this.MethodName = Common.CamelCaseString(mi.Name);
+            if (this.IsArray && !mi.GetParameters().Any())
+            {
+                this.MethodName += "All";
+            }
+            this.LoadParameters();
         }
 
         private static string HttpMethodFromMethodName(string name)
         {
             return name.ToUpperInvariant();
+        }
+
+        private void LoadParameters()
+        {
+            var validParameters = this._mi.GetParameters().Where(pi =>
+                pi.GetCustomAttribute<FromBodyAttribute>() == null);
+            foreach (var p in validParameters)
+            {
+                var name = Common.CamelCaseString(p.Name);
+                this.Parameters.Add(name, "@" + name);
+            }            
         }
     }
 }
