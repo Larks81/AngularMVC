@@ -1,27 +1,71 @@
 ﻿
-    <a>stato: {{transactionStateItem}}</a><br />
-<div ng-show="item!=null">
-    <actionbar state="transactionStateItem" validatedupd="validatedupd()" initupd="initupd()" validateddel="validateddel()" validatedundo="validatedundo()" statechanged="statechanged(state)"></actionbar>
+<div ng-show="item!=null">    
+    <fieldset ng-show="item!=null">                      
+        <div class="panel panel-default" style="height:542px;">
+            <div class="panel-heading">
+                Person Details
+                <actionbar style="float:right;margin-top:-7px;" state="transactionStateItem" validatedupd="validatedupd()" initupd="initupd()" validateddel="validateddel()" validatedundo="validatedundo()" statechanged="statechanged(state)"></actionbar>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li role="presentation"><a ng-click="viewTab='profile'" href="#">Profile</a></li>
+                            <li role="presentation"><a ng-click="viewTab='addresses'" href="#">Addresses</a></li>
+                            <li role="presentation"><a ng-click="viewTab='other'" href="#">Other</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-10">                        
+                        <div ng-show="viewTab=='profile' || viewTab==null">
+                            <fieldset>
+                                <legend>Profile</legend>
+                                <table>
+                                    <tr>
+                                        <td><label style="width:100px;">ID</label></td>
+                                        <td><maskedfield value="item.ID" enablestate="1111" mask="00000" state="1"></maskedfield></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="tbNome">FirstName</label></td>
+                                        <td><maskedfield value="item.FirstName" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="tbCognome">LastName</label></td>
+                                        <td><maskedfield value="item.LastName" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="tbCodFis">Fiscal Code</label></td>
+                                        <td><maskedfield value="item.FiscalCode" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield></td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </div>
 
-    <fieldset ng-show="item!=null">
-        <legend>Selected Person</legend>
-        <label for="tbID">ID</label>
-        <maskedfield value="item.ID" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
-        <label for="tbNome">FirstName</label>
-        <maskedfield value="item.FirstName" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
-        <label for="tbCognome">LastName</label>
-        <maskedfield value="item.LastName" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
-        <label for="tbCodFis">Fiscal Code</label>
-        <maskedfield value="item.FiscalCode" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
-        
-        <button ng-click="addNew(item.Addresses)" ng-disabled="transactionStateItem!=4">Add new Address</button>
-        <li ng-repeat="address in item.Addresses">
-            <maskedfield value="address.City" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
-            <maskedfield value="address.StreetName" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
-            <maskedfield value="address.Number" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
-            <button ng-click="remove(address)" ng-disabled="transactionStateItem!=4">Remove</button>
-        </li>
+                        <div ng-show="viewTab=='addresses'">                            
+                            <fieldset>
+                                <legend>
+                                    Addresses 
+                                    <button style="float: right; margin-top: -7px;" ng-click="addNew(item.Addresses)" ng-disabled="transactionStateItem!=4" class="btn btn-default">Add new Address</button>
+                                </legend>
+                                <div ng-repeat="address in item.Addresses">
+                                    <maskedfield value="address.City" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
+                                    <maskedfield value="address.StreetName" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
+                                    <maskedfield value="address.Number" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
+                                    <button ng-click="remove(address)" ng-disabled="transactionStateItem!=4">Remove</button>
+                                </div>
+                            </fieldset>                            
+                        </div>
 
+                        <div ng-show="viewTab=='other'">
+                            <fieldset>
+                                <legend>
+                                    Other                                    
+                                </legend>                                
+                            </fieldset>          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>                                                  
     </fieldset>
 </div>
 <div ng-show="item==null">

@@ -1,4 +1,6 @@
-﻿<button ng-disabled="!btnconfEnabled" ng-click="btnconfOnClick()">Confirm</button>
-<button ng-disabled="!btnupdEnabled" ng-click="btnupdOnClick()">Modify</button>
-<button ng-disabled="!btndelEnabled" ng-click="btndelOnClick()">Delete</button>
-<button ng-disabled="!btnundoEnabled" ng-click="btnundoOnClick()">Undo</button>
+﻿<div class="btn-group" role="group" aria-label="...">
+    <button ng-disabled="!btnconfEnabled" ng-click="btnconfOnClick()" class="btn btn-default">Confirm</button>
+    <button ng-disabled="!btnupdEnabled" ng-click="btnupdOnClick()" class="btn btn-default">Modify</button>
+    <button ng-disabled="!btndelEnabled" ng-click="btndelOnClick()" class="btn btn-default">Delete</button>
+    <button ng-disabled="!btnundoEnabled" ng-click="btnundoOnClick()" class="btn btn-default">Undo</button>    
+</div>

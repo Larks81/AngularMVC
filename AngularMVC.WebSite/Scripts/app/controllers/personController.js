@@ -1,12 +1,12 @@
 ﻿
 /*Person is the var to change in code*/
 angular.module('AngularMVCApp')
-.controller('personCtrl', ['$scope', 'Person',
+.controller('personController', ['$scope', 'Person',
     function ($scope, Person) {
                         
         $scope.get = function (query) {
             
-            return Person.query(query);
+            return Person.query(query).$promise;
         };
 
         $scope.getNew = function () {

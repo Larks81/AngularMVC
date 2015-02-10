@@ -4,23 +4,27 @@
 @section featured {
     
 }
+
 <div id="bodyContainer" ng-app="AngularMVCApp">
+
     
-    <h3>Example of simplelist+crud</h3>
-    <simplelist modeltype="person" selected="selectedPersonSimple" eventexecname="onactionexecutedSimple"></simplelist>
-    <crud modeltype="person" model="selectedPersonSimple" eventexecname="onactionexecutedSimple"></crud>
-    <br />
-    <br />
-    <h3>Example of filteredList+crud</h3>
-    <filteredlist modeltype="person" selected="selectedPerson" eventexecname="onactionexecuted"></filteredlist>
-    <crud modeltype="person" model="selectedPerson" eventexecname="onactionexecuted"></crud>
-        
+    <br/>
+    <div class="row" >
+        <div class="col-md-3">
+            <filteredlist modeltype="person" selected="selectedPersonSimple" eventexecname="onactionexecutedSimple"></filteredlist>
+        </div>
+        <div class="col-md-9">
+            <crud modeltype="person" model="selectedPersonSimple" eventexecname="onactionexecutedSimple"></crud>
+        </div>
+    </div>
+           
 </div>
 @section scripts {
-    @Scripts.Render("~/bundles/angular-lib") 
-    @Scripts.Render("~/bundles/app-base") 
-    @Scripts.Render("~/bundles/app-controllers")   
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular-lib")
+    @Scripts.Render("~/bundles/app-base")
+    @Scripts.Render("~/bundles/app-controllers")
     @Scripts.Render("~/bundles/app-directives-common")
     @Scripts.Render("~/bundles/app-directives-business")
-     
+
 }

@@ -1,20 +1,12 @@
-﻿<style>
-     .rowList {
-         cursor: pointer;
-     }
-     .rowSelected {
-         font-weight: 700;
-     }
-</style>
-
-<a> {{title}} </a>
-<button ng-click="new()" >New</button>
-<input ng-model="tbFirstName" />
-<button ng-click="getFiltred({ firstName:tbFirstName })"> Search </button>
-<ul>
-    <li ng-repeat="person in items" ng-click="select(person)" >
-        <div ng-class="{rowSelected: person==selected }" class="rowList">
-            {{person.FirstName}} - {{person.LastName}} - {{person.FiscalCode}}
+﻿<div class="panel panel-default">
+    <div class="panel-heading">Persons search</div>
+    <div class="panel-body">
+        <div class="list-group" style="height:450px;">
+            <input class="form-control" placeholder="Mario Rossi" ng-model="tbFirstName" ng-change="getFiltred({ firstName:tbFirstName })" />
+            <br/>
+            <a href="#" class="list-group-item" ng-repeat="person in items" ng-click="select(person)">
+                {{person.FirstName}} - {{person.LastName}} - {{person.FiscalCode}}
+            </a>
         </div>
-    </li>
-</ul>
+    </div>
+</div>

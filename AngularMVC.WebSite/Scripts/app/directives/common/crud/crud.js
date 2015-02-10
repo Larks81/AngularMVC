@@ -13,7 +13,7 @@
         controller: function ($scope) {
 
             //Base controller with typed crud actions
-            $controller($scope.modeltype + 'Ctrl', { $scope: $scope });
+            $controller($scope.modeltype + 'Controller', { $scope: $scope });
 
             //Internal copy of model
             $scope.item = null;
@@ -21,6 +21,8 @@
             //Rollback copy of item
             $scope.rollbackItem = null;
             
+            $scope.viewTab = null;
+
             $scope.$watch('model', function () {
                 $scope.item = angular.copy($scope.model);
                 if ($scope.item != null && $scope.item.ID == null) {
@@ -28,7 +30,8 @@
                 } else if ($scope.item != null && $scope.item.ID != null) {
                     $scope.transactionStateItem = TransationStateEnum.VIEW;
                 }
-                
+
+                $scope.viewTab = null;
             });                            
             
             //------------------------------------------------------------------

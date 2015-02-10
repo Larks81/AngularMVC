@@ -13,11 +13,17 @@
         //'/Scripts/app/templates/baseCrud/person/personList.html',
         controller: function ($scope) {
             
-            $controller($scope.modeltype + 'Ctrl', { $scope: $scope });
+            $controller($scope.modeltype + 'Controller', { $scope: $scope });
             getAll();
 
             function getAll() {
-                $scope.items = $scope.get();
+                $scope.get()
+                    .then(function (data) {                       
+                        $scope.items = data;
+                    })
+                    .catch(function (data) {
+                        alert("error");
+                    });                
             };
             
             $scope.select = function (item) {

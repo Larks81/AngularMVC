@@ -24,8 +24,8 @@ namespace DNA.WebSite
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
-            ViewEngines.Engines.Clear();
-            ViewEngines.Engines.Add(new AngularMVCViewEngine());
+            //ViewEngines.Engines.Clear();
+            //ViewEngines.Engines.Add(new AngularMVCViewEngine());
         }
     }
 }

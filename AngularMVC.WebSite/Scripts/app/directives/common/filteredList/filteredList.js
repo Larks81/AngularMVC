@@ -12,10 +12,18 @@
         },        
         controller: function ($scope) {
             
-            $controller($scope.modeltype + 'Ctrl', { $scope: $scope });            
+            $controller($scope.modeltype + 'Controller', { $scope: $scope });
 
-            $scope.getFiltred = function (query) {                
-                $scope.items = $scope.get(query);
+            $scope.getFiltred = function (query) {
+
+                $scope.get(query)
+                    .then(function (data) {
+                        $scope.items = data;
+                    })
+                    .catch(function (data) {
+                        alert("error");
+                    });
+                
             };
             
             $scope.select = function (item) {

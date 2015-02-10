@@ -3,15 +3,19 @@
         background-color: white;
         border: 1px solid;
         border-color: #CCC;
-        height:18px;
+        /*height:18px;*/
+        height: 25px;
     }
     .view {
         background-color: transparent;
         border: 0px solid;
-        padding-left: 6px;
-        padding-top: 6px;        
+        padding-left: 1px;
+        /*padding-top: 6px;*/
         color: #606060;
+        height: 25px;
     }
 </style>
 
-<input ng-model="value" ng-class="{edit: state==3 || state==4, view: state==1 || state==2}" />
+<input type="text" ng-model="value" ng-class="{edit: state==3 || state==4, view: state==1 || state==2}" >
+
+<!--<input ng-model="value" ng-class="{edit: state==3 || state==4, view: state==1 || state==2}" />-->

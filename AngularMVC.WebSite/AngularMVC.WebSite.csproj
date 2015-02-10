@@ -192,6 +192,10 @@
     <Compile Include="ViewEngine\AngularMVCViewEngine.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -247,6 +251,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular-resource.js" />
     <Content Include="Scripts\angular-resource.min.js" />
@@ -254,6 +259,9 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-resource.min.js.map" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\app\directives\business\person\personFilteredList.html" />
@@ -264,15 +272,19 @@
     <Content Include="Scripts\app\directives\common\crud\crud.js" />
     <Content Include="Scripts\app\enums.js" />
     <Content Include="Scripts\app\configs.js" />
-    <Content Include="Scripts\app\controllers\personCtrl.js" />
+    <Content Include="Scripts\app\controllers\personController.js" />
     <Content Include="Scripts\app\services.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\directives\common\maskedField\maskedField.html" />
     <Content Include="Scripts\app\directives\common\maskedField\maskedField.js" />
     <Content Include="Scripts\app\directives\common\actionBar\actionBar.html" />
     <Content Include="Scripts\app\directives\common\actionBar\actionBar.js" />
-    <Content Include="Scripts\jquery-1.8.2.js" />
-    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <None Include="Scripts\jquery-1.9.0.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.9.0.js" />
+    <Content Include="Scripts\jquery-1.9.0.min.js" />
+    <Content Include="Scripts\jquery-1.9.0.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
