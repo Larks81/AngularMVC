@@ -19,22 +19,62 @@ namespace DNA.WebApi.Controllers
                 ID = 1 ,
                 FirstName = "Manuele",
                 LastName = "Pagliarani",
-                FiscalCode = "DDDDDDDDDDDD"
+                FiscalCode = "DDDDDDDDDDDD",
+                Addresses = new List<Address>()
+                            {
+                                new Address()
+                                {
+                                    City = "Montiano",
+                                    Number = "4",
+                                    StreetName = "V.Veneto"
+                                },
+                                new Address()
+                                {
+                                    City = "Montiano",
+                                    Number = "5",
+                                    StreetName = "V.Roma"
+                                }
+                            }
             },
             new Person(){
                 ID = 2 ,
                 FirstName = "Valentina",
                 LastName = "Rocchi",
-                FiscalCode = "DDDDDDDDDDDD"
+                FiscalCode = "DDDDDDDDDDDD",
+                Addresses = new List<Address>()
+            },
+            new Person(){
+                ID = 3 ,
+                FirstName = "Manuele",
+                LastName = "Pagliarani",
+                FiscalCode = "DDDDDDDDDDDD",
+                Addresses = new List<Address>()
+            },
+            new Person(){
+                ID = 4 ,
+                FirstName = "Valentina",
+                LastName = "Rocchi",
+                FiscalCode = "DDDDDDDDDDDD",
+                Addresses = new List<Address>()
             }
 
         };
 
         // GET api/anagrafica
-        public IEnumerable<Person> Get()
+        public IEnumerable<Person> Get(string firstName=null,string lastName=null)
         {
-            return persons;
-        }
+            IEnumerable<Person> filtredPersons = persons;
+            if (!string.IsNullOrEmpty(firstName))
+            {
+                filtredPersons = filtredPersons.Where(p => p.FirstName == firstName);
+            }
+            if (!string.IsNullOrEmpty(lastName))
+            {
+                filtredPersons = filtredPersons.Where(p => p.LastName == lastName);
+            }
+
+            return filtredPersons;
+        }        
 
         // GET api/anagrafica/5
         public Person Get(int id)
@@ -43,9 +83,11 @@ namespace DNA.WebApi.Controllers
         }
 
         // POST api/anagrafica
-        public void Post([FromBody]Person value)
+        public Person Post([FromBody]Person value)
         {
+            value.ID = persons.Max(p => p.ID) + 1;
             persons.Add(value);
+            return value;
         }
 
         // PUT api/anagrafica/5

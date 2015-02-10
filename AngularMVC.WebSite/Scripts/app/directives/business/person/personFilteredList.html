@@ -1,0 +1,20 @@
+﻿<style>
+     .rowList {
+         cursor: pointer;
+     }
+     .rowSelected {
+         font-weight: 700;
+     }
+</style>
+
+<a> {{title}} </a>
+<button ng-click="new()" >New</button>
+<input ng-model="tbFirstName" />
+<button ng-click="getFiltred({ firstName:tbFirstName })"> Search </button>
+<ul>
+    <li ng-repeat="person in items" ng-click="select(person)" >
+        <div ng-class="{rowSelected: person==selected }" class="rowList">
+            {{person.FirstName}} - {{person.LastName}} - {{person.FiscalCode}}
+        </div>
+    </li>
+</ul>

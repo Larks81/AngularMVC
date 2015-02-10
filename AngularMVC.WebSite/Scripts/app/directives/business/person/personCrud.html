@@ -1,0 +1,29 @@
+﻿
+    <a>stato: {{transactionStateItem}}</a><br />
+<div ng-show="item!=null">
+    <actionbar state="transactionStateItem" validatedupd="validatedupd()" initupd="initupd()" validateddel="validateddel()" validatedundo="validatedundo()" statechanged="statechanged(state)"></actionbar>
+
+    <fieldset ng-show="item!=null">
+        <legend>Selected Person</legend>
+        <label for="tbID">ID</label>
+        <maskedfield value="item.ID" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
+        <label for="tbNome">FirstName</label>
+        <maskedfield value="item.FirstName" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
+        <label for="tbCognome">LastName</label>
+        <maskedfield value="item.LastName" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
+        <label for="tbCodFis">Fiscal Code</label>
+        <maskedfield value="item.FiscalCode" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
+        
+        <button ng-click="addNew(item.Addresses)" ng-disabled="transactionStateItem!=4">Add new Address</button>
+        <li ng-repeat="address in item.Addresses">
+            <maskedfield value="address.City" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
+            <maskedfield value="address.StreetName" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
+            <maskedfield value="address.Number" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
+            <button ng-click="remove(address)" ng-disabled="transactionStateItem!=4">Remove</button>
+        </li>
+
+    </fieldset>
+</div>
+<div ng-show="item==null">
+    Select a item
+</div>
