@@ -1,0 +1,31 @@
+﻿﻿
+<style>
+    .edit {
+        background-color: white;
+        border: 1px solid;
+        border-color: #CCC;
+        /*height:18px;*/
+        height: 25px;
+    }
+
+    .view {
+        background-color: transparent;
+        border: 0px solid;
+        padding-left: 1px;
+        /*padding-top: 6px;*/
+        color: #606060;
+        height: 25px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        text-indent: 1px;
+        text-overflow: '';
+    }
+</style>
+
+<span ng-show="state==3 || state==4">
+    <select ng-model="selected" ng-options="opt as opt.LookupTextSearch for opt in items track by opt.LookupID" style='width:{{size}}px;height:25px;'></select> 
+</span> 
+<span ng-show="state==1 || state==2">
+    <input ng-model="selected.LookupTextRead" style='width:{{size}}px;' class="view" />    
+</span>
+

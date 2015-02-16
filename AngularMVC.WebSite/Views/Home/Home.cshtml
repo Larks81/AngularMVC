@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<h2>Prova Home</h2>
+<lookupfield selected="sel" lookupname="Categories" enablestate="1111" mask="00000" state="3"></lookupfield>
+<br />
+
+<div class="row">
+    <div class="col-md-3">
+        <filteredlist modeltype="person" selected="selectedPersonSimple" eventexecname="onactionexecutedSimple"></filteredlist>
+    </div>
+    <div class="col-md-9">
+        <crud modeltype="person" model="selectedPersonSimple" eventexecname="onactionexecutedSimple"></crud>
+    </div>
+</div>

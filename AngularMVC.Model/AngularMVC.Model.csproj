@@ -39,8 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Address.cs" />
-    <Compile Include="Person.cs" />
+    <Compile Include="base\ILookupable.cs" />
+    <Compile Include="business\Address.cs" />
+    <Compile Include="business\Category.cs" />
+    <Compile Include="business\City.cs" />
+    <Compile Include="business\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

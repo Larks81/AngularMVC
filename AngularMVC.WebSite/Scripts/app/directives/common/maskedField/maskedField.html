@@ -1,4 +1,5 @@
-﻿<style>
+﻿﻿
+<style>
     .edit {
         background-color: white;
         border: 1px solid;
@@ -6,6 +7,7 @@
         /*height:18px;*/
         height: 25px;
     }
+
     .view {
         background-color: transparent;
         border: 0px solid;
@@ -16,6 +18,13 @@
     }
 </style>
 
-<input type="text" ng-model="value" ng-class="{edit: state==3 || state==4, view: state==1 || state==2}" >
+<input type="text" ng-model="value" ng-class="{edit: state==3 || state==4, view: state==1 || state==2}" style='width:{{size}}px;'>
 
-<!--<input ng-model="value" ng-class="{edit: state==3 || state==4, view: state==1 || state==2}" />-->
+
+<!--<span ng-show="state==3 || state==4">
+        <input type="text" ng-model="value" style='width:{{size}}px;' />
+    </span>
+    <span ng-show="state==1 || state==2">
+        <label> {{value}}</label>
+    </span>-->
+

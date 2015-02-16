@@ -48,7 +48,8 @@ namespace DNA.WebSite
 
             bundles.Add(new ScriptBundle("~/bundles/angular-lib").Include(
                 "~/Scripts/angular.js",
-                "~/Scripts/angular-resource.js"));
+                "~/Scripts/angular-resource.js",
+                "~/Scripts/angular-route.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app-base").Include(
                 "~/Scripts/app/*.js"));
@@ -61,7 +62,9 @@ namespace DNA.WebSite
 
             bundles.Add(new ScriptBundle("~/bundles/app-directives-business").IncludeDirectory(
                 "~/Scripts/app/directives/business", "*.js", true));
-            
+
+            bundles.Add(new ScriptBundle("~/bundles/app-services").IncludeDirectory(
+                "~/Scripts/app/services", "*.js", true));
         }
     }
 }

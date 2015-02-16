@@ -1,11 +1,15 @@
-﻿<div class="panel panel-default">
-    <div class="panel-heading">Persons search</div>
-    <div class="panel-body">
-        <div class="list-group" style="height:450px;">
-            <input class="form-control" placeholder="Mario Rossi" ng-model="tbFirstName" ng-change="getFiltred({ firstName:tbFirstName })" />
-            <br/>
-            <a href="#" class="list-group-item" ng-repeat="person in items" ng-click="select(person)">
-                {{person.FirstName}} - {{person.LastName}} - {{person.FiscalCode}}
+﻿<style>
+    .highlightedText {        
+        font-weight: 600;
+    }
+</style > 
+<div class="panel panel-default" >
+    <div class="panel-heading" > Persons search</div >
+    <div class="panel-body" >
+        <div class="list-group" style="height:450px;" >
+            <input class="form-control" placeholder="Mario Rossi" ng-model="tbFirstName" ng-change="getFiltred({ firstName:tbFirstName })" /> <br /> 
+            <a href="#" class="list-group-item" ng-repeat="person in items" ng-click="select(person)" >
+                <span ng-bind-html="highlight(person.FirstName+' '+person.LastName+' '+person.FiscalCode, tbFirstName)"> </span>                 
             </a>
         </div>
     </div>

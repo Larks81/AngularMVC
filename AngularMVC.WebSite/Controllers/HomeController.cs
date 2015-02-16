@@ -15,18 +15,14 @@ namespace DNA.WebSite.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Home()
         {
-            ViewBag.Message = "Your app description page.";
-
-            return View();
+            return PartialView();
         }
 
-        public ActionResult Contact()
+        public ActionResult About()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return PartialView();
         }
     }
 }

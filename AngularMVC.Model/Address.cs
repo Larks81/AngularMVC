@@ -10,6 +10,6 @@ namespace DNA.Model
     {
         public string StreetName { get; set; }
         public string Number { get; set; }
-        public string City { get; set; }
+        public City City { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿
-<div ng-show="item!=null">    
-    <fieldset ng-show="item!=null">                      
+
+<div >    
+    <fieldset>                      
         <div class="panel panel-default" style="height:542px;">
             <div class="panel-heading">
                 Person Details
@@ -11,16 +12,16 @@
                     <div class="col-md-2">
                         <ul class="nav nav-pills nav-stacked">
                             <li role="presentation"><a ng-click="viewTab='profile'" href="#">Profile</a></li>
-                            <li role="presentation"><a ng-click="viewTab='addresses'" href="#">Addresses</a></li>
+                            <li role="presentation"><a ng-click="viewTab='addresses'" href="#">Address({{item.Addresses.length}})</a></li>
                             <li role="presentation"><a ng-click="viewTab='other'" href="#">Other</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-10">                        
+                    <div class="col-md-10" ng-show="item!=null">
                         <div ng-show="viewTab=='profile' || viewTab==null">
                             <fieldset>
                                 <legend>Profile</legend>
                                 <table>
-                                    <tr>
+                                    <tr>                                        
                                         <td><label style="width:100px;">ID</label></td>
                                         <td><maskedfield value="item.ID" enablestate="1111" mask="00000" state="1"></maskedfield></td>
                                     </tr>
@@ -40,34 +41,66 @@
                             </fieldset>
                         </div>
 
-                        <div ng-show="viewTab=='addresses'">                            
+                        <div ng-show="viewTab=='addresses'">
                             <fieldset>
                                 <legend>
-                                    Addresses 
+                                    Addresses
                                     <button style="float: right; margin-top: -7px;" ng-click="addNew(item.Addresses)" ng-disabled="transactionStateItem!=4" class="btn btn-default">Add new Address</button>
                                 </legend>
-                                <div ng-repeat="address in item.Addresses">
-                                    <maskedfield value="address.City" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
-                                    <maskedfield value="address.StreetName" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
-                                    <maskedfield value="address.Number" enablestate="1111" mask="00000" state="transactionStateItem"></maskedfield>
-                                    <button ng-click="remove(address)" ng-disabled="transactionStateItem!=4">Remove</button>
+                                <div>
+                                    
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    From Date
+                                                </th>
+                                                <th>
+                                                    City
+                                                </th>
+                                                <th>
+                                                    Street
+                                                </th>
+                                                <th>
+                                                    Number
+                                                </th>
+                                                <th>
+                                                    
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tr ng-repeat="address in item.Addresses">
+                                            <td><input ng-model="prova" calendar /> <!--<datefield value="address.FromDate" enablestate="1111" format="dd/MM/yyyy" state="transactionStateItem" size="80">--> </datefield></td>
+                                            <td><lookupfield lookupname="Cities" selected="address.City" state="transactionStateItem" size="100"></lookupfield></td>
+                                            <td><maskedfield value="address.StreetName" enablestate="1111" mask="00000" state="transactionStateItem" size="80"></maskedfield></td>
+                                            <td><maskedfield value="address.Number" enablestate="1111" mask="00000" state="transactionStateItem" size="40"></maskedfield></td>
+                                            <td><button ng-click="remove(address)" ng-disabled="transactionStateItem!=4" class="btn btn-default" style="float:right;">Remove</button></td>
+                                            <td><lookupfield lookupname="Categories" selected="selectedCat" state="transactionStateItem" size="100"></lookupfield></td>
+                                        </tr>
+                                    </table>
+
+                                    
+                                                                        
+                                    
+                                    
+                                    
                                 </div>
-                            </fieldset>                            
+                            </fieldset>
                         </div>
 
                         <div ng-show="viewTab=='other'">
                             <fieldset>
                                 <legend>
-                                    Other                                    
-                                </legend>                                
-                            </fieldset>          
+                                    Other
+                                </legend>
+                            </fieldset>
                         </div>
+                    </div>
+                    <div class="col-md-10" ng-show="item==null">
+                        Select a item                        
                     </div>
                 </div>
             </div>
         </div>                                                  
     </fieldset>
-</div>
-<div ng-show="item==null">
-    Select a item
 </div>

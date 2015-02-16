@@ -10,20 +10,20 @@
         templateUrl: function(elem, attrs) {
             return '/Scripts/app/directives/business/' + attrs.modeltype + '/' + attrs.modeltype + 'FilteredList.html';
         },        
-        controller: function ($scope) {
+        controller: function ($scope, $sce) {
             
             $controller($scope.modeltype + 'Controller', { $scope: $scope });
 
             $scope.getFiltred = function (query) {
-
-                $scope.get(query)
-                    .then(function (data) {
-                        $scope.items = data;
-                    })
-                    .catch(function (data) {
-                        alert("error");
-                    });
                 
+                $scope.get(query)
+                .then(function (data) {
+                    $scope.items = data;
+                })
+                .catch(function (data) {
+                    alert("error");
+                });
+                                             
             };
             
             $scope.select = function (item) {
@@ -47,6 +47,13 @@
                         break;
                 }
             });
+
+            $scope.highlight = function (text, search) {                
+                if (!search) {
+                    return $sce.trustAsHtml(text);
+                }                
+                return $sce.trustAsHtml(text.replace(new RegExp(search, 'gi'), '<span class="highlightedText">$&</span>'));
+            };
         }
     };
 });

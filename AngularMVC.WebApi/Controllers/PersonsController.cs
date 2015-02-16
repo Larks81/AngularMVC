@@ -24,13 +24,13 @@ namespace DNA.WebApi.Controllers
                             {
                                 new Address()
                                 {
-                                    City = "Montiano",
+                                    City = City.FakeCities.FirstOrDefault(c=>c.ID==1),
                                     Number = "4",
                                     StreetName = "V.Veneto"
                                 },
                                 new Address()
                                 {
-                                    City = "Montiano",
+                                    City = null,
                                     Number = "5",
                                     StreetName = "V.Roma"
                                 }
@@ -66,11 +66,11 @@ namespace DNA.WebApi.Controllers
             IEnumerable<Person> filtredPersons = persons;
             if (!string.IsNullOrEmpty(firstName))
             {
-                filtredPersons = filtredPersons.Where(p => p.FirstName == firstName);
+                filtredPersons = filtredPersons.Where(p => p.FirstName.IndexOf(firstName, StringComparison.OrdinalIgnoreCase) >= 0);
             }
             if (!string.IsNullOrEmpty(lastName))
             {
-                filtredPersons = filtredPersons.Where(p => p.LastName == lastName);
+                filtredPersons = filtredPersons.Where(p => p.LastName.IndexOf(lastName, StringComparison.OrdinalIgnoreCase) >= 0);
             }
 
             return filtredPersons;

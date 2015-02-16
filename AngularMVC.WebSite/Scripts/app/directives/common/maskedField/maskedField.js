@@ -6,11 +6,11 @@
             value: '=',
             enablestate: '=',
             state: '=',
-            mask: '='
+            mask: '=',
+            size: '@size'
         },
         templateUrl: '/Scripts/app/directives/common/maskedField/maskedField.html',
-        controller: function ($scope) {            
-            
+        controller: function ($scope) {                        
         }
     };
 });

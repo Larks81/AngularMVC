@@ -1,11 +1,10 @@
-﻿
-/*Person is the var to change in code*/
+﻿/*Person is the var to change in code*/
 angular.module('AngularMVCApp')
 .controller('personController', ['$scope', 'Person',
     function ($scope, Person) {
-                        
+
         $scope.get = function (query) {
-            
+
             return Person.query(query).$promise;
         };
 
@@ -13,16 +12,16 @@ angular.module('AngularMVCApp')
             return new Person();
         };
 
-        $scope.insert = function (person) {            
+        $scope.insert = function (person) {
             return Person.save(person).$promise;
         };
 
         $scope.update = function (person) {
-            return Person.update({ id: person.ID }, person).$promise;            
+            return Person.update({ id: person.ID }, person).$promise;
         };
 
-        $scope.delete = function (person) {            
+        $scope.delete = function (person) {
             return Person.delete({ id: person.ID }).$promise;
         };
-                
+
     }]);

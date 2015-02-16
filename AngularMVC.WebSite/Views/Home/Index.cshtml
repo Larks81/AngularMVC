@@ -5,24 +5,16 @@
     
 }
 
-<div id="bodyContainer" ng-app="AngularMVCApp">
-
-    
-    <br/>
-    <div class="row" >
-        <div class="col-md-3">
-            <filteredlist modeltype="person" selected="selectedPersonSimple" eventexecname="onactionexecutedSimple"></filteredlist>
-        </div>
-        <div class="col-md-9">
-            <crud modeltype="person" model="selectedPersonSimple" eventexecname="onactionexecutedSimple"></crud>
-        </div>
+<div id="bodyContainer" ng-app="AngularMVCApp" >    
+    <div id="simple" ng-controller="mainController" ng-init="sayHello">
+        <div ng-view></div>
     </div>
-           
 </div>
 @section scripts {
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/angular-lib")
-    @Scripts.Render("~/bundles/app-base")
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    @Scripts.Render("~/bundles/angular-lib")    
+    @Scripts.Render("~/bundles/app-base")   
+    @*@Scripts.Render("~/bundles/app-services")*@ 
     @Scripts.Render("~/bundles/app-controllers")
     @Scripts.Render("~/bundles/app-directives-common")
     @Scripts.Render("~/bundles/app-directives-business")
