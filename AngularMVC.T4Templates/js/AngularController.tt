@@ -1,0 +1,51 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Net.Http" #>
+<#@ assembly name="$(TargetDir)System.Web.Http.dll" #>
+<#@ assembly name="$(TargetDir)DNA.Model.dll" #>
+<#@ assembly name="$(TargetDir)DNA.WebApi.dll" #>
+<#@ assembly name="$(TargetPath)" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Net.Http" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="DNA.WebApi.Controllers" #>
+<#@ import namespace="DNA.Model" #>
+<#@ import namespace="AngularMVC.T4Templates.Helpers" #>
+<#@ output extension=".js" #>
+<# 
+	var controller = typeof(PersonsController);
+	var controllerInfo = new AngularControllerInfo(controller);
+ #>
+
+angular.module('AngularMVCApp')
+.controller('<#= controllerInfo.ControllerName #>', ['$scope', <#= controllerInfo.GetDependencies(quoted: true) #>,
+    function ($scope, <#= controllerInfo.GetDependencies(quoted: false) #>) {
+		$scope.getNew = function () {
+            return new Person();
+        };
+
+		<# if (controllerInfo.SupportsHttpMethod(HttpMethod.Get)) { #>		            
+        $scope.get = function (query) {            
+            return Person.query(query).$promise;
+        };
+		<# } #>
+
+       <# if (controllerInfo.SupportsHttpMethod(HttpMethod.Post)) { #>		            
+        $scope.insert = function (person) {            
+            return Person.save(person).$promise;
+        };
+		<# } #>
+
+        <# if (controllerInfo.SupportsHttpMethod(HttpMethod.Put)) { #>		            
+        $scope.update = function (person) {
+            return Person.update({ id: person.ID }, person).$promise;            
+        };
+		<# } #>
+
+		<# if (controllerInfo.SupportsHttpMethod(HttpMethod.Delete)) { #>		            
+        $scope.delete = function (person) {            
+            return Person.delete({ id: person.ID }).$promise;
+        };
+		<# } #>     
+    }]);

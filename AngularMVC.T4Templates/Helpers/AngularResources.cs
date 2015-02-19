@@ -37,9 +37,30 @@ namespace AngularMVC.T4Templates.Helpers
                     attrType == typeof(HttpDeleteAttribute);
             });
         }
+
+        /// <summary>
+        /// Removes the last part of a String formatted in Pascal Case.
+        /// Ex:
+        /// PeopleController -> People
+        /// </summary>
+        /// <param name="controllerType"></param>
+        /// <returns></returns>
+        public static string GetServiceName(Type controllerType)
+        {
+            var nameParts = Common.SplitPascalCaseString(controllerType.Name);
+            if (nameParts.Count() == 1)
+                return controllerType.Name;
+
+            var name = nameParts.First();
+            for (int i = 1; i < nameParts.Count()-1; i++)
+            {
+                name += nameParts.ElementAt(i);
+            }
+            return name;
+        }
     }
 
-    public class WebApiControllerMethodsInfos
+    public class WebApiControllerMethodInfo
     {
         private MethodInfo _mi;
 
@@ -51,13 +72,13 @@ namespace AngularMVC.T4Templates.Helpers
 
         public Dictionary<string, string> Parameters { get; set; }
 
-        public WebApiControllerMethodsInfos(MethodInfo mi)
+        public WebApiControllerMethodInfo(MethodInfo mi)
         {
             this._mi = mi;
             this.Parameters = new Dictionary<string, string>();
-            this.HttpMethod = HttpMethodFromMethodName(mi.Name);
+            this.DetermineHttpMethod();
             this.IsArray = typeof(IEnumerable).IsAssignableFrom(mi.ReturnType);
-            this.MethodName = Common.CamelCaseString(mi.Name);
+            this.DetermineMethodName();
             if (this.IsArray && !mi.GetParameters().Any())
             {
                 this.MethodName += "All";
@@ -65,9 +86,29 @@ namespace AngularMVC.T4Templates.Helpers
             this.LoadParameters();
         }
 
-        private static string HttpMethodFromMethodName(string name)
+        private void DetermineHttpMethod()
         {
-            return name.ToUpperInvariant();
+            var attrs = this._mi.GetCustomAttributes(false);
+            if (attrs.OfType<HttpGetAttribute>().Any()) 
+            { 
+                this.HttpMethod = "GET";
+            }
+            else if (attrs.OfType<HttpPostAttribute>().Any()) 
+            {
+                this.HttpMethod = "POST";
+            }
+            else if (attrs.OfType<HttpPutAttribute>().Any())
+            {
+                this.HttpMethod = "PUT";
+            }
+            else if (attrs.OfType<HttpDeleteAttribute>().Any())
+            {
+                this.HttpMethod = "DELETE";
+            }
+            else
+            {
+                this.HttpMethod = this._mi.Name.ToUpperInvariant();
+            }
         }
 
         private void LoadParameters()
@@ -79,6 +120,32 @@ namespace AngularMVC.T4Templates.Helpers
                 var name = Common.CamelCaseString(p.Name);
                 this.Parameters.Add(name, "@" + name);
             }            
+        }
+
+        private void DetermineMethodName()
+        {
+            switch (this.HttpMethod)
+            {
+                case "GET":
+                    this.MethodName = (this.IsArray ? "query" : "get");
+                    break;
+
+                case "POST":
+                    this.MethodName = "save";
+                    break;
+
+                case "DELETE":
+                    this.MethodName = "delete";
+                    break;
+
+                case "PUT":
+                    this.MethodName = "update";
+                    break;
+
+                default:
+                    this.MethodName = Common.CamelCaseString(this._mi.Name);
+                    break;
+            }
         }
     }
 }

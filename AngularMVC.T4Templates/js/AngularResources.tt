@@ -17,7 +17,7 @@
 <# 
 	var controllers = new List<Type>() { typeof(PersonsController) };
 	var dict = controllers.ToDictionary(k => k, 
-						v => AngularResourcesHelpers.GetValidActionsFromController(v).Select(m => new WebApiControllerMethodsInfos(m)));
+						v => AngularResourcesHelpers.GetValidActionsFromController(v).Select(m => new WebApiControllerMethodInfo(m)));
  #>
 
 var appServices = angular.module('appServices', ['ngResource']);
@@ -30,7 +30,7 @@ var appServices = angular.module('appServices', ['ngResource']);
 		if (controllerMethodsInfos.Any()) 
 		{
 			WriteLine(String.Format(@"appServices.factory('{0}', ['$resource','configs', 
-			function ($resource, configs) {{", controllerType.Name));
+			function ($resource, configs) {{", AngularResourcesHelpers.GetServiceName(controllerType)));
 			WriteLine("return $resource(configs.baseWebApiUrl+'api/persons/:id', {}, {");
 			foreach(var cmi in controllerMethodsInfos) 
 			{

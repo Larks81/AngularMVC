@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\AngularControllers.cs" />
     <Compile Include="Helpers\AngularResources.cs" />
     <Compile Include="Helpers\Common.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,6 +66,15 @@
     <Content Include="js\AngularApp.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AngularApp.js</LastGenOutput>
+    </Content>
+    <Content Include="js\AngularController.js">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AngularController.tt</DependentUpon>
+    </Content>
+    <Content Include="js\AngularController.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AngularController.js</LastGenOutput>
     </Content>
     <Content Include="js\AngularResources.js">
       <AutoGen>True</AutoGen>
