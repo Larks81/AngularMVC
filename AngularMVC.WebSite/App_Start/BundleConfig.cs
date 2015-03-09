@@ -49,7 +49,8 @@ namespace DNA.WebSite
             bundles.Add(new ScriptBundle("~/bundles/angular-lib").Include(
                 "~/Scripts/angular.js",
                 "~/Scripts/angular-resource.js",
-                "~/Scripts/angular-route.js"));
+                "~/Scripts/angular-route.js",
+                "~/Scripts/angular-ui/ui-bootstrap-tpls.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app-base").Include(
                 "~/Scripts/app/*.js"));

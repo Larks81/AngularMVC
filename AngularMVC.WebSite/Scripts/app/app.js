@@ -1,4 +1,4 @@
-﻿var app = angular.module('AngularMVCApp', ['ngResource', 'appServices', 'ngRoute']);
+﻿var app = angular.module('AngularMVCApp', ['ngResource', 'appServices', 'ngRoute', 'ui.bootstrap']);
 
 app.config([
     '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {

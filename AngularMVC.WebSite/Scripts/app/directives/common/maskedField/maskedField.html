@@ -3,28 +3,21 @@
     .edit {
         background-color: white;
         border: 1px solid;
-        border-color: #CCC;
-        /*height:18px;*/
+        border-color: #CCC;        
         height: 25px;
     }
 
     .view {
         background-color: transparent;
         border: 0px solid;
-        padding-left: 1px;
-        /*padding-top: 6px;*/
+        padding-left: 2px;        
         color: #606060;
         height: 25px;
     }
 </style>
 
-<input type="text" ng-model="value" ng-class="{edit: state==3 || state==4, view: state==1 || state==2}" style='width:{{size}}px;'>
-
-
-<!--<span ng-show="state==3 || state==4">
-        <input type="text" ng-model="value" style='width:{{size}}px;' />
-    </span>
-    <span ng-show="state==1 || state==2">
-        <label> {{value}}</label>
-    </span>-->
+<input type="text" 
+       ng-model="value" 
+       ng-class="{edit: state==3 || state==4, view: state==1 || state==2}" 
+       style='width:{{size}}px;'>
 

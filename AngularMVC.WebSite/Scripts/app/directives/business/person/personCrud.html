@@ -70,20 +70,13 @@
                                             </tr>
                                         </thead>
                                         <tr ng-repeat="address in item.Addresses">
-                                            <td><input ng-model="prova" calendar /> <!--<datefield value="address.FromDate" enablestate="1111" format="dd/MM/yyyy" state="transactionStateItem" size="80">--> </datefield></td>
-                                            <td><lookupfield lookupname="Cities" selected="address.City" state="transactionStateItem" size="100"></lookupfield></td>
+                                            <td><datefield value="address.FromDate" enablestate="1111" format="MM/dd/yyyy" state="transactionStateItem" size="80"></datefield></td>
+                                            <td><lookupautosuggestfield selected="address.City" lookupname="Cities" enablestate="1111" mask="00000" state="transactionStateItem"></lookupautosuggestfield></td>
                                             <td><maskedfield value="address.StreetName" enablestate="1111" mask="00000" state="transactionStateItem" size="80"></maskedfield></td>
                                             <td><maskedfield value="address.Number" enablestate="1111" mask="00000" state="transactionStateItem" size="40"></maskedfield></td>
-                                            <td><button ng-click="remove(address)" ng-disabled="transactionStateItem!=4" class="btn btn-default" style="float:right;">Remove</button></td>
-                                            <td><lookupfield lookupname="Categories" selected="selectedCat" state="transactionStateItem" size="100"></lookupfield></td>
+                                            <td><button ng-click="remove(address)" ng-disabled="transactionStateItem!=4" class="btn btn-default" style="float:right;">Remove</button></td>                                            
                                         </tr>
                                     </table>
-
-                                    
-                                                                        
-                                    
-                                    
-                                    
                                 </div>
                             </fieldset>
                         </div>
